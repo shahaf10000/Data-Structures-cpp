@@ -18,7 +18,7 @@ Linked_List::~Linked_List()
 
 void Linked_List::addNewNode(const int data)
 {
-	if (this->_first)
+	if (this->_first)// if there is a first node add the new node to the last node
 	{
 		Linked_List_Node* curr = this->_first;
 
@@ -29,7 +29,7 @@ void Linked_List::addNewNode(const int data)
 
 		curr->setNext(new Linked_List_Node(data));
 	}
-	else
+	else// new node is the first node
 	{
 		this->_first = new Linked_List_Node(data);
 	}
@@ -72,8 +72,13 @@ Linked_List_Node* Linked_List::getFirst() const
 	return this->_first;
 }
 
-int& Linked_List::operator[](const int index)
+int& Linked_List::operator[](const int index) // one for changing
 {
+	if (index < 0 || index >= this->_len)
+	{
+		throw std::out_of_range("Index out of range...");
+	}
+
 	Linked_List_Node* curr = this->_first;
 
 	for (int i = 0; i < index; i++)
@@ -84,7 +89,7 @@ int& Linked_List::operator[](const int index)
 	return curr->getData();
 }
 
-const int& Linked_List::operator[](const int index) const
+const int& Linked_List::operator[](const int index) const // one for using without changing
 {
 	if (index < 0 || index >= this->_len)
 	{
@@ -106,13 +111,13 @@ std::ostream& operator<<(std::ostream& os, const Linked_List& l)
 
 	if (curr)
 	{
-		while (curr && curr->getNext())
+		while (curr && curr->getNext())// if it's not the last node
 		{
 			os << curr->getData() << ", ";
 			curr = curr->getNext();
 		}
 
-		os << curr->getData() << ".";
+		os << curr->getData() << "."; // adding the last node
 	}
 	else
 	{
