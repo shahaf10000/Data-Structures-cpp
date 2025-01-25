@@ -22,7 +22,7 @@ void Linked_List::addNewNode(const int data)
 	{
 		Linked_List_Node* curr = this->_first;
 
-		for (int i = 0; i < this->_len; i++)
+		for (int i = 0; i < this->_len - 1; i++)
 		{
 			curr = curr->getNext();
 		}
@@ -100,22 +100,24 @@ const int& Linked_List::operator[](const int index) const
 	return curr->getData();
 }
 
-std::ostream& operator<<(std::ostream& os, const Linked_List& p)
+std::ostream& operator<<(std::ostream& os, const Linked_List& l)
 {
-	Linked_List_Node* curr = p.getFirst();
+	Linked_List_Node* curr = l.getFirst();
 
 	if (curr)
 	{
 		while (curr && curr->getNext())
 		{
-			os << curr->getData() + ", ";
+			os << curr->getData() << ", ";
 			curr = curr->getNext();
 		}
 
-		os << curr->getData() + ".";
+		os << curr->getData() << ".";
 	}
 	else
 	{
 		os << "List is empty.";
 	}
+
+	return os;
 }
