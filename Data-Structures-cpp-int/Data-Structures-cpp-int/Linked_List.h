@@ -20,6 +20,8 @@ public:
 	/////////////
 	void addNewNode(const int data);
 	void remove(const int data);
+	int getIndex(const int toSearch);
+	int count(const int toSearch);
 
 	/////////////
 	// getters //

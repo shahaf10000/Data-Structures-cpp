@@ -62,6 +62,39 @@ void Linked_List::remove(const int data)
 	this->_len--;
 }
 
+int Linked_List::getIndex(const int toSearch)
+{
+	Linked_List_Node* curr = this->_first;
+	int index = 0;
+
+	while (curr)
+	{
+		if (curr->getData() == toSearch)
+			return index;
+
+		index++;
+		curr = curr->getNext();
+	}
+
+	return -1;
+}
+
+int Linked_List::count(const int toSearch)
+{
+	Linked_List_Node* curr = this->_first;
+	int count = 0;
+
+	while (curr)
+	{
+		if (curr->getData() == toSearch)
+			count++;
+		
+		curr = curr->getNext();
+	}
+
+	return count;
+}
+
 int Linked_List::getLen() const
 {
 	return this->_len;
